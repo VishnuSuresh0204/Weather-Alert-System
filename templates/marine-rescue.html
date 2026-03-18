@@ -1,0 +1,248 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Marine Rescue - Smart Marine Rescue & Weather Alert System{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header bg-primary text-white py-5" style="margin-top: 76px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="display-3 fw-bold mb-3">Marine Rescue Operations</h1>
+                <p class="lead">Real-time tracking and coordination of rescue missions</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Live Stats Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-lg text-center h-100">
+                    <div class="card-body p-4">
+                        <div class="display-4 text-primary mb-3">
+                            <i class="fas fa-ship"></i>
+                        </div>
+                        <h2 class="fw-bold text-primary mb-2">12</h2>
+                        <p class="text-muted mb-0">Active Missions</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-lg text-center h-100">
+                    <div class="card-body p-4">
+                        <div class="display-4 text-success mb-3">
+                            <i class="fas fa-anchor"></i>
+                        </div>
+                        <h2 class="fw-bold text-success mb-2">47</h2>
+                        <p class="text-muted mb-0">Boats & Drones Online</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-lg text-center h-100">
+                    <div class="card-body p-4">
+                        <div class="display-4 text-warning mb-3">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h2 class="fw-bold text-warning mb-2">8</h2>
+                        <p class="text-muted mb-0">SOS Alerts Today</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-lg text-center h-100">
+                    <div class="card-body p-4">
+                        <div class="display-4 text-danger mb-3">
+                            <i class="fas fa-cloud-bolt"></i>
+                        </div>
+                        <h2 class="fw-bold text-danger mb-2">3</h2>
+                        <p class="text-muted mb-0">Weather Risks</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Live Map Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-4 fw-bold mb-3">Live Rescue Operations Map</h2>
+            <p class="lead text-muted">Real-time tracking of emergency responses</p>
+        </div>
+        
+        <div class="card border-0 shadow-lg">
+            <div class="card-body p-0 position-relative" style="min-height: 500px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <img src="{% static 'images/map-view.jpg' %}" alt="Rescue Map" class="img-fluid w-100" style="height: 500px; object-fit: cover; opacity: 0.3;">
+                <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
+                    <h3 class="display-5 fw-bold mb-3">Interactive Ocean Map</h3>
+                    <p class="lead mb-4">Tracking 12 active rescue operations</p>
+                    <div class="d-flex justify-content-center gap-4 flex-wrap">
+                        <div>
+                            <span class="badge bg-danger rounded-pill p-2 mb-2 d-block">Active Rescue</span>
+                        </div>
+                        <div>
+                            <span class="badge bg-warning rounded-pill p-2 mb-2 d-block">SOS Signal</span>
+                        </div>
+                        <div>
+                            <span class="badge bg-success rounded-pill p-2 mb-2 d-block">Rescue Vessel</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Active Alerts Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-4 fw-bold mb-3">Active SOS Alerts</h2>
+            <p class="lead text-muted">Emergency responses in progress</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="card border-start border-danger border-4 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-start">
+                            <div class="bg-danger bg-gradient text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px; flex-shrink: 0;">
+                                <i class="fas fa-life-ring"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h4 class="fw-bold mb-2">Engine Failure - Fishing Vessel</h4>
+                                <p class="text-muted mb-2">
+                                    <i class="fas fa-map-marker-alt text-danger me-2"></i>24.5°N, 78.3°W 
+                                    <span class="mx-2">|</span>
+                                    <i class="fas fa-clock text-danger me-2"></i>14:32
+                                </p>
+                                <span class="badge bg-warning text-dark">IN PROGRESS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="card border-start border-danger border-4 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-start">
+                            <div class="bg-danger bg-gradient text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px; flex-shrink: 0;">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h4 class="fw-bold mb-2">Medical Emergency - Yacht</h4>
+                                <p class="text-muted mb-2">
+                                    <i class="fas fa-map-marker-alt text-danger me-2"></i>25.1°N, 77.8°W 
+                                    <span class="mx-2">|</span>
+                                    <i class="fas fa-clock text-danger me-2"></i>13:45
+                                </p>
+                                <span class="badge bg-warning text-dark">IN PROGRESS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="card border-start border-success border-4 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-start">
+                            <div class="bg-success bg-gradient text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px; flex-shrink: 0;">
+                                <i class="fas fa-anchor"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h4 class="fw-bold mb-2">Storm Damage - Cargo Ship</h4>
+                                <p class="text-muted mb-2">
+                                    <i class="fas fa-map-marker-alt text-success me-2"></i>26.2°N, 79.1°W 
+                                    <span class="mx-2">|</span>
+                                    <i class="fas fa-clock text-success me-2"></i>12:20
+                                </p>
+                                <span class="badge bg-success">RESOLVED</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="card border-start border-success border-4 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-start">
+                            <div class="bg-success bg-gradient text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px; flex-shrink: 0;">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h4 class="fw-bold mb-2">Person Overboard - Sailboat</h4>
+                                <p class="text-muted mb-2">
+                                    <i class="fas fa-map-marker-alt text-success me-2"></i>23.8°N, 76.5°W 
+                                    <span class="mx-2">|</span>
+                                    <i class="fas fa-clock text-success me-2"></i>11:15
+                                </p>
+                                <span class="badge bg-success">RESOLVED</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-4 fw-bold mb-3">How Rescue Works</h2>
+            <p class="lead text-muted">Advanced AI-powered emergency response</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm h-100 text-center">
+                    <div class="card-body p-4">
+                        <div class="bg-primary bg-gradient text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px; font-size: 1.5rem; font-weight: bold;">1</div>
+                        <div class="mb-3">
+                            <i class="fas fa-radar fa-3x text-primary"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">AI Detects Emergencies</h4>
+                        <p class="text-muted">Our advanced AI systems monitor multiple data sources to detect distress signals and weather anomalies in real-time.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm h-100 text-center">
+                    <div class="card-body p-4">
+                        <div class="bg-success bg-gradient text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px; font-size: 1.5rem; font-weight: bold;">2</div>
+                        <div class="mb-3">
+                            <i class="fas fa-rocket fa-3x text-success"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Units Dispatched</h4>
+                        <p class="text-muted">Nearby rescue boats, drones, and helicopters are automatically deployed based on proximity and emergency type.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm h-100 text-center">
+                    <div class="card-body p-4">
+                        <div class="bg-info bg-gradient text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px; font-size: 1.5rem; font-weight: bold;">3</div>
+                        <div class="mb-3">
+                            <i class="fas fa-satellite fa-3x text-info"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Live Tracking + Analytics</h4>
+                        <p class="text-muted">Real-time GPS tracking combined with weather analytics ensures optimal rescue routes and safety monitoring.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

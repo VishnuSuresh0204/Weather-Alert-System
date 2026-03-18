@@ -1,0 +1,56 @@
+{% extends "RESCUE/base.html" %}
+{% block title %}Rescue Details{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <a href="/rescue_history/" class="btn btn-secondary mb-3">
+        ← Back to History
+    </a>
+
+    <!-- SOS DETAILS -->
+    <div class="card mb-4">
+        <div class="card-header bg-dark text-white">
+            SOS Details
+        </div>
+        <div class="card-body">
+            <p><strong>Fisherman:</strong> {{ sos.fisherman.name }}</p>
+            <p><strong>Phone:</strong> {{ sos.fisherman.phone }}</p>
+            <p><strong>Emergency:</strong> {{ sos.emergency_type }}</p>
+            <p><strong>Location:</strong> {{ sos.location_details }}</p>
+            <p><strong>Message:</strong> {{ sos.message }}</p>
+            <p><strong>Status:</strong>
+                <span class="badge bg-info">{{ sos.status }}</span>
+            </p>
+        </div>
+    </div>
+
+    <!-- RESCUE ACTIONS -->
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            Rescue Actions Timeline
+        </div>
+        <div class="card-body">
+            {% if actions %}
+                <ul class="list-group">
+                    {% for action in actions %}
+                    <li class="list-group-item">
+                        <strong>Date:</strong> {{ action.action_date|date:"d M Y, h:i A" }}<br>
+                        <strong>Status Updated To:</strong>
+                        <span class="badge bg-success">
+                            {{ action.status_updated_to }}
+                        </span><br>
+                        <strong>Note:</strong> {{ action.action_note }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <div class="alert alert-warning">
+                    No rescue actions found.
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+</div>
+{% endblock %}

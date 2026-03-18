@@ -1,0 +1,345 @@
+{% extends 'ADMIN/base.html' %}
+{% load static %}
+
+{% block title %}Home - Smart Marine Rescue & Weather Alert System{% endblock %}
+
+{% block extra_css %}
+<!-- AOS Animation Library -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section position-relative overflow-hidden"
+    style="background-image: url('{% static 'images/back-2.jpg' %}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+    <div class="container-fluid px-0">
+        <div class="row g-0 align-items-center min-vh-100" style="background: rgba(15, 23, 42, 0.85);">
+            <div class="col-lg-6 col-md-12 px-4 px-lg-5 py-5">
+                <div class="hero-content text-white" data-aos="fade-right" data-aos-duration="1000">
+                    <h1 class="display-2 fw-bold mb-4" style="font-family: 'Poppins', sans-serif; font-weight: 700;">
+                        Smart Marine Rescue &
+                        <span class="text-info">Weather Alert</span> System
+                    </h1>
+                    <p class="lead mb-4 fs-4" style="font-family: 'Inter', sans-serif; opacity: 0.95;">
+                        Advanced AI-powered platform for real-time ocean safety monitoring,
+                        emergency response coordination, and weather hazard alerts.
+                        Protecting lives at sea with cutting-edge technology.
+                    </p>
+                    <div class="d-flex gap-3 flex-wrap mt-5">
+                        <a href="#"
+                            class="btn btn-primary btn-lg px-5 py-3 rounded-pill hover-glow border-0 fw-semibold">
+                            <i class="fas fa-life-ring me-2"></i>View Rescue Operations
+                        </a>
+                        <a href="#"
+                            class="btn btn-outline-light btn-lg px-5 py-3 rounded-pill hover-glow fw-semibold border-2">
+                            <i class="fas fa-cloud-sun-rain me-2"></i>Check Weather Alerts
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 text-center" data-aos="fade-left" data-aos-duration="1000"
+                data-aos-delay="200">
+                <div class="hero-illustration p-5">
+                    <img src="{% static 'images/hero-bg.jpg' %}" alt="Marine Rescue Illustration" class="img-fluid"
+                        style="max-height: 600px; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));"
+                        onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNjAwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9Im9jZWFuR3JhZCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwMDNBNzA7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjUwJSIgc3R5bGU9InN0b3AtY29sb3I6IzAwNUY5RTtzdG9wLW9wYWNpdHk6MSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3R5bGU9InN0b3AtY29sb3I6IzAwOTREODtzdG9wLW9wYWNpdHk6MSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBmaWxsPSJ1cmwoI29jZWFuR3JhZCkiLz48dGV4dCB4PSI0MDAiIHk9IjMwMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TWFyaW5lIFJlc2N1ZTwvdGV4dD48L3N2Zz4=';">
+                </div>
+            </div>
+        </div>
+
+        <!-- Animated Waves -->
+        <div class="waves-container position-absolute bottom-0 start-0 w-100" style="z-index: 1;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none" class="w-100"
+                style="height: 120px; display: block;">
+                <defs>
+                    <linearGradient id="waveGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#0094D8;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#00A6FF;stop-opacity:0.5" />
+                    </linearGradient>
+                </defs>
+                <path d="M0,60 C360,20 720,100 1080,60 C1260,40 1380,50 1440,60 L1440,120 L0,120 Z"
+                    fill="url(#waveGrad)" class="wave-path-1" />
+                <path d="M0,80 C360,40 720,120 1080,80 C1260,60 1380,70 1440,80 L1440,120 L0,120 Z"
+                    fill="url(#waveGrad)" opacity="0.6" class="wave-path-2" />
+            </svg>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats-section pb-5 bg-light">
+    <div class="container">
+    </div>
+    <div class="container" style="margin-top: -80px; position: relative; z-index: 10;">
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="card glass-card border-0 h-100 text-center rounded-xl p-2">
+                    <div class="card-body">
+                        <div class="display-4 text-primary mb-3">
+                            <i class="fas fa-ship"></i>
+                        </div>
+                        <h2 class="fw-bold text-dark mb-2" data-target="47">0</h2>
+                        <p class="text-muted mb-0 fw-medium">Active Vessels</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="card glass-card border-0 h-100 text-center rounded-xl p-2">
+                    <div class="card-body">
+                        <div class="display-4 text-success mb-3">
+                            <i class="fas fa-life-ring"></i>
+                        </div>
+                        <h2 class="fw-bold text-dark mb-2" data-target="12">0</h2>
+                        <p class="text-muted mb-0 fw-medium">Rescue Missions</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="card glass-card border-0 h-100 text-center rounded-xl p-2">
+                    <div class="card-body">
+                        <div class="display-4 text-warning mb-3">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h2 class="fw-bold text-dark mb-2" data-target="8">0</h2>
+                        <p class="text-muted mb-0 fw-medium">SOS Alerts Today</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="card glass-card border-0 h-100 text-center rounded-xl p-2">
+                    <div class="card-body">
+                        <div class="display-4 text-info mb-3">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h2 class="fw-bold text-dark mb-2" data-target="99">0</h2>
+                        <p class="text-muted mb-0 fw-medium">Success Rate %</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section py-5" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="display-3 fw-bold mb-3" style="font-family: 'Poppins', sans-serif; font-weight: 700;">
+                Key Features
+            </h2>
+            <p class="lead text-muted fs-4" style="font-family: 'Inter', sans-serif;">
+                Comprehensive ocean safety and emergency response solutions
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <!-- Feature Card 1: Live Rescue Tracking -->
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="card border-0 shadow-lg h-100 rounded-4 feature-card">
+                    <div class="card-body p-5 text-center">
+                        <div class="feature-icon mb-4">
+                            <img src="{% static 'icons/rescue-tracking.svg' %}" alt="Rescue Tracking" class="img-fluid"
+                                style="width: 80px; height: 80px;">
+                        </div>
+                        <h3 class="fw-bold mb-3" style="font-family: 'Poppins', sans-serif; font-weight: 600;">
+                            Live Rescue Tracking
+                        </h3>
+                        <p class="text-muted fs-5" style="font-family: 'Inter', sans-serif; line-height: 1.8;">
+                            24/7 satellite tracking and monitoring of vessels, weather conditions, and emergency signals
+                            across all coastal regions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature Card 2: Weather Alerts -->
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="card border-0 shadow-lg h-100 rounded-4 feature-card">
+                    <div class="card-body p-5 text-center">
+                        <div class="feature-icon mb-4">
+                            <img src="{% static 'icons/weather-alerts.svg' %}" alt="Weather Alerts" class="img-fluid"
+                                style="width: 80px; height: 80px;">
+                        </div>
+                        <h3 class="fw-bold mb-3" style="font-family: 'Poppins', sans-serif; font-weight: 600;">
+                            Weather Alerts
+                        </h3>
+                        <p class="text-muted fs-5" style="font-family: 'Inter', sans-serif; line-height: 1.8;">
+                            AI-powered system that instantly detects and broadcasts emergency signals, weather hazards,
+                            and distress calls.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature Card 3: SOS Emergency Signals -->
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="card border-0 shadow-lg h-100 rounded-4 feature-card">
+                    <div class="card-body p-5 text-center">
+                        <div class="feature-icon mb-4">
+                            <img src="{% static 'icons/sos-emergency.svg' %}" alt="SOS Emergency" class="img-fluid"
+                                style="width: 80px; height: 80px;">
+                        </div>
+                        <h3 class="fw-bold mb-3" style="font-family: 'Poppins', sans-serif; font-weight: 600;">
+                            SOS Emergency Signals
+                        </h3>
+                        <p class="text-muted fs-5" style="font-family: 'Inter', sans-serif; line-height: 1.8;">
+                            Real-time detection and response to distress signals with automatic coordination of nearest
+                            rescue units.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="how-it-works-section py-5">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="display-3 fw-bold mb-3" style="font-family: 'Poppins', sans-serif; font-weight: 700;">
+                How It Works
+            </h2>
+            <p class="lead text-muted fs-4" style="font-family: 'Inter', sans-serif;">
+                Simple, fast, and reliable emergency response system
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-center">
+                    <div class="step-number bg-primary bg-gradient text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-4"
+                        style="width: 70px; height: 70px; font-size: 1.8rem; font-weight: bold; font-family: 'Poppins', sans-serif;">
+                        01
+                    </div>
+                    <div class="mb-4">
+                        <i class="fas fa-radar fa-4x text-primary"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3" style="font-family: 'Poppins', sans-serif; font-weight: 600;">Detection
+                    </h4>
+                    <p class="text-muted fs-5" style="font-family: 'Inter', sans-serif; line-height: 1.8;">
+                        Our AI system continuously monitors multiple data sources to detect emergencies and hazards in
+                        real-time.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="text-center">
+                    <div class="step-number bg-success bg-gradient text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-4"
+                        style="width: 70px; height: 70px; font-size: 1.8rem; font-weight: bold; font-family: 'Poppins', sans-serif;">
+                        02
+                    </div>
+                    <div class="mb-4">
+                        <i class="fas fa-bullhorn fa-4x text-success"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3" style="font-family: 'Poppins', sans-serif; font-weight: 600;">Alert</h4>
+                    <p class="text-muted fs-5" style="font-family: 'Inter', sans-serif; line-height: 1.8;">
+                        Immediate alerts are sent to rescue coordination centers, nearby vessels, and emergency
+                        services.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="text-center">
+                    <div class="step-number bg-warning bg-gradient text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-4"
+                        style="width: 70px; height: 70px; font-size: 1.8rem; font-weight: bold; font-family: 'Poppins', sans-serif;">
+                        03
+                    </div>
+                    <div class="mb-4">
+                        <i class="fas fa-rocket fa-4x text-warning"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3" style="font-family: 'Poppins', sans-serif; font-weight: 600;">Dispatch</h4>
+                    <p class="text-muted fs-5" style="font-family: 'Inter', sans-serif; line-height: 1.8;">
+                        Rescue units are automatically dispatched based on proximity, capability, and current
+                        conditions.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="text-center">
+                    <div class="step-number bg-info bg-gradient text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-4"
+                        style="width: 70px; height: 70px; font-size: 1.8rem; font-weight: bold; font-family: 'Poppins', sans-serif;">
+                        04
+                    </div>
+                    <div class="mb-4">
+                        <i class="fas fa-check-circle fa-4x text-info"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3" style="font-family: 'Poppins', sans-serif; font-weight: 600;">Rescue</h4>
+                    <p class="text-muted fs-5" style="font-family: 'Inter', sans-serif; line-height: 1.8;">
+                        Continuous monitoring and communication throughout the rescue operation ensures successful
+                        outcomes.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Emergency CTA Section -->
+<section class="emergency-cta py-5" style="background: linear-gradient(135deg, #003A70 0%, #005F9E 50%, #0094D8 100%);">
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-lg-8" data-aos="zoom-in">
+                <i class="fas fa-phone-alt fa-5x text-white mb-4"></i>
+                <h2 class="display-4 fw-bold text-white mb-3"
+                    style="font-family: 'Poppins', sans-serif; font-weight: 700;">
+                    Emergency? Call Now
+                </h2>
+                <p class="lead text-white mb-4 fs-4" style="font-family: 'Inter', sans-serif; opacity: 0.95;">
+                    If you're in immediate danger at sea, call our 24/7 emergency hotline
+                </p>
+                <a href="tel:+15551234567" class="btn btn-lg px-5 py-3 fw-semibold text-white" style="background: linear-gradient(135deg, #00A6FF 0%, #00D4FF 100%); 
+                          border: none; border-radius: 50px;
+                          box-shadow: 0 10px 30px rgba(0, 166, 255, 0.4);">
+                    <i class="fas fa-phone me-2"></i> +1 (555) 123-4567
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<!-- AOS Animation Library -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    // Initialize AOS
+    AOS.init({
+        duration: 1000,
+        easing: 'ease-in-out',
+        once: true,
+        offset: 100
+    });
+
+    // Animate stats on scroll
+    const animateStats = () => {
+        const stats = document.querySelectorAll('[data-target]');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = parseInt(entry.target.getAttribute('data-target'));
+                    let current = 0;
+                    const increment = target / 50;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            entry.target.textContent = target;
+                            clearInterval(timer);
+                        } else {
+                            entry.target.textContent = Math.floor(current);
+                        }
+                    }, 30);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        stats.forEach(stat => observer.observe(stat));
+    };
+
+    document.addEventListener('DOMContentLoaded', animateStats);
+</script>
+{% endblock %}

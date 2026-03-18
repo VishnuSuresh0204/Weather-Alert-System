@@ -1,0 +1,184 @@
+{% extends 'USER/base.html' %}
+{% load static %}
+
+{% block title %}Weather Alerts{% endblock %}
+
+{% block content %}
+
+<style>
+.page-header {
+    background: linear-gradient(rgba(15,23,42,.85), rgba(15,23,42,.85)),
+    url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 0;
+    margin-top: 70px;
+}
+.summary-card {
+    margin-top: -60px;
+    border-radius: 22px;
+}
+.alert-card {
+    border-radius: 18px;
+    transition: .3s;
+}
+.alert-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,.12);
+}
+.icon-box {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+.badge-soft {
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: .75rem;
+    font-weight: 700;
+}
+</style>
+
+<!-- HEADER -->
+<section class="page-header text-white text-center">
+    <div class="container">
+        <h1 class="display-4 fw-bold">Weather Alerts</h1>
+        <p class="lead opacity-75">Port-wise marine safety updates</p>
+    </div>
+</section>
+
+<section class="bg-light pb-5">
+<div class="container">
+
+<!-- CURRENT CONDITION -->
+<div class="row justify-content-center">
+<div class="col-lg-7">
+<div class="card summary-card shadow-lg">
+<div class="card-body p-4 p-md-5">
+
+{% if alerts %}
+{% with alerts.0 as latest %}
+
+<div class="row align-items-center text-center text-md-start">
+
+<div class="col-md-4 text-center mb-3 mb-md-0">
+{% if latest.alert_level == "danger" %}
+    <i class="fas fa-bolt fa-5x text-danger"></i>
+{% elif latest.alert_level == "warning" %}
+    <i class="fas fa-exclamation-triangle fa-5x text-warning"></i>
+{% else %}
+    <i class="fas fa-check-circle fa-5x text-success"></i>
+{% endif %}
+</div>
+
+<div class="col-md-8">
+<span class="badge 
+{% if latest.alert_level == 'danger' %}bg-danger
+{% elif latest.alert_level == 'warning' %}bg-warning text-dark
+{% else %}bg-success{% endif %}">
+CURRENT CONDITION
+</span>
+
+<h2 class="fw-bold mt-2 mb-1">
+{% if latest.alert_level == "danger" %}
+    Dangerous Sea Conditions
+{% elif latest.alert_level == "warning" %}
+    Weather Warning Issued
+{% else %}
+    Safe for Fishing
+{% endif %}
+</h2>
+
+<p class="text-muted mb-2">{{ latest.title }}</p>
+
+<p class="fw-semibold text-primary mb-0">
+<i class="fas fa-anchor me-2"></i>{{ latest.port.name }}
+</p>
+
+<small class="text-muted">
+Updated {{ latest.created_at|timesince }} ago
+</small>
+</div>
+
+</div>
+{% endwith %}
+{% else %}
+<div class="text-center">
+<i class="fas fa-sun fa-5x text-warning mb-3"></i>
+<h3 class="fw-bold">All Clear</h3>
+<p class="text-muted">No active weather alerts</p>
+</div>
+{% endif %}
+
+</div>
+</div>
+</div>
+</div>
+
+<!-- ALERT LIST -->
+<div class="mt-5">
+<h3 class="fw-bold mb-4">
+<i class="fas fa-bell text-danger me-2"></i>Active Alerts
+</h3>
+
+<div class="row g-4">
+{% for alert in alerts %}
+<div class="col-lg-6">
+<div class="card alert-card shadow-sm h-100 border-start border-4
+{% if alert.alert_level == 'danger' %}border-danger
+{% elif alert.alert_level == 'warning' %}border-warning
+{% else %}border-success{% endif %}">
+
+<div class="card-body p-4">
+<div class="d-flex align-items-start">
+
+<div class="icon-box me-3
+{% if alert.alert_level == 'danger' %}bg-danger text-white
+{% elif alert.alert_level == 'warning' %}bg-warning text-dark
+{% else %}bg-success text-white{% endif %}">
+{% if alert.alert_level == 'danger' %}
+<i class="fas fa-bolt"></i>
+{% elif alert.alert_level == 'warning' %}
+<i class="fas fa-exclamation-triangle"></i>
+{% else %}
+<i class="fas fa-check"></i>
+{% endif %}
+</div>
+
+<div class="flex-grow-1">
+<div class="d-flex justify-content-between">
+<h5 class="fw-bold mb-1">{{ alert.title }}</h5>
+<span class="badge-soft bg-light text-dark">
+{{ alert.created_at|timesince }} ago
+</span>
+</div>
+
+<p class="text-muted mb-2">{{ alert.description }}</p>
+
+<div class="small fw-semibold text-primary">
+<i class="fas fa-anchor me-1"></i>{{ alert.port.name }}
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+{% empty %}
+<div class="col-12">
+<div class="alert alert-info text-center">
+No active alerts available
+</div>
+</div>
+{% endfor %}
+</div>
+</div>
+
+</div>
+</section>
+
+{% endblock %}

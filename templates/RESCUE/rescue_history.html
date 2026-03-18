@@ -1,0 +1,48 @@
+{% extends "RESCUE/base.html" %}
+{% block title %}Rescue History{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <h3 class="mb-4">Rescue History</h3>
+
+    {% if sos_list %}
+    <table class="table table-bordered table-striped align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Fisherman</th>
+                <th>Emergency</th>
+                <th>Location</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th width="120">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sos in sos_list %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ sos.fisherman.name }}</td>
+                <td>{{ sos.emergency_type }}</td>
+                <td>{{ sos.location_details }}</td>
+                <td>
+                    <span class="badge bg-info">{{ sos.status }}</span>
+                </td>
+                <td>{{ sos.created_at|date:"d M Y, h:i A" }}</td>
+                <td>
+                    <a href="/rescue_history_detail/?sos_id={{ sos.id }}"
+                       class="btn btn-sm btn-primary">
+                        View Details
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <div class="alert alert-warning">No rescue history found.</div>
+    {% endif %}
+
+</div>
+{% endblock %}

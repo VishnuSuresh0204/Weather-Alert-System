@@ -1,0 +1,101 @@
+{% extends "ADMIN/base.html" %}
+{% load static %}
+
+{% block title %}View Fishermen{% endblock %}
+
+{% block content %}
+
+<!-- Page Header -->
+<section class="bg-primary text-white py-5" style="margin-top:76px;">
+    <div class="container text-center">
+        <h1 class="fw-bold">Fishermen Management</h1>
+        <p class="lead">View and manage registered fishermen</p>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+
+        <!-- Messages -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% if users %}
+        <div class="table-responsive shadow rounded">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Fisherman</th>
+                        <th>Phone</th>
+                        <th>Boat Number</th>
+                        <th>Address</th>
+                        {% comment %} <th class="text-center">Actions</th> {% endcomment %}
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for u in users %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+
+                        <!-- Fisherman Info -->
+                        <td>
+                            <div class="fw-bold">{{ u.name }}</div>
+                            <small class="text-muted">User ID: {{ u.id }}</small>
+                        </td>
+
+                        <td>{{ u.phone }}</td>
+                        <td>{{ u.boat_number }}</td>
+                        <td>{{ u.address }}</td>
+
+                        <!-- Actions -->
+                        {% comment %} <td class="text-center">
+
+                            <!-- View -->
+                            <a href="/admin_view_fisherman/{{ u.id }}/"
+                               class="btn btn-sm btn-info">
+                                <i class="fas fa-eye"></i> View
+                            </a>
+
+                            <!-- Edit -->
+                            <a href="/admin_edit_fisherman/{{ u.id }}/"
+                               class="btn btn-sm btn-warning">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+
+                            <!-- Delete -->
+                            <form method="post"
+                                  action="/admin_delete_fisherman/"
+                                  class="d-inline"
+                                  onsubmit="return confirm('Are you sure you want to delete this fisherman?');">
+                                {% csrf_token %}
+                                <input type="hidden" name="uid" value="{{ u.id }}">
+                                <button class="btn btn-sm btn-danger">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </form>
+
+                        </td> {% endcomment %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% else %}
+            <div class="alert alert-warning text-center">
+                No fishermen found.
+            </div>
+        {% endif %}
+
+    </div>
+</section>
+
+{% endblock %}

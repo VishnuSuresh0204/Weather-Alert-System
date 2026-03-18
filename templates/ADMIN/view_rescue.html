@@ -1,0 +1,117 @@
+{% extends 'ADMIN/base.html' %}
+{% load static %}
+
+{% block title %}View Rescue Teams{% endblock %}
+
+{% block content %}
+
+<!-- Page Header -->
+<section class="bg-primary text-white py-5" style="margin-top:76px;">
+    <div class="container text-center">
+        <h1 class="fw-bold">Rescue Teams Management</h1>
+        <p class="lead">Approve, block or reject rescue teams</p>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+
+        <!-- Messages -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% if rescue_list %}
+        <div class="table-responsive shadow rounded">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Rescue Team</th>
+                        <th>Contact</th>
+                        <th>Port</th>
+                        <th>Status</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for r in rescue_list %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+
+                        <!-- Rescue Info -->
+                        <td>
+                            <div class="fw-bold">{{ r.name }}</div>
+                            <small class="text-muted">{{ r.email }}</small>
+                        </td>
+
+                        <!-- Contact -->
+                        <td>{{ r.phone }}</td>
+
+                        <!-- Port -->
+                        <td>{{ r.port.name }}</td>
+
+                        <!-- Status Badge -->
+                        <td>
+                            {% if r.status == 'active' %}
+                                <span class="badge bg-success">Active</span>
+                            {% else %}
+                                <span class="badge bg-secondary">Inactive</span>
+                            {% endif %}
+                        </td>
+
+                        <!-- Actions -->
+                        <td class="text-center">
+
+                            {% if r.status != 'active' %}
+                            <!-- Approve -->
+                            <form method="post" action="/admin_approve_rescue/" class="d-inline">
+                                {% csrf_token %}
+                                <input type="hidden" name="rid" value="{{ r.id }}">
+                                <button class="btn btn-sm btn-success">
+                                    <i class="fas fa-check"></i> Approve
+                                </button>
+                            </form>
+                            {% endif %}
+
+                            <!-- Block -->
+                            <form method="post" action="/admin_block_rescue/" class="d-inline">
+                                {% csrf_token %}
+                                <input type="hidden" name="rid" value="{{ r.id }}">
+                                <button class="btn btn-sm btn-warning">
+                                    <i class="fas fa-ban"></i> Block
+                                </button>
+                            </form>
+
+                            <!-- Reject -->
+                            <form method="post" action="/admin_reject_rescue/" class="d-inline"
+                                  onsubmit="return confirm('Are you sure you want to reject this rescue team?');">
+                                {% csrf_token %}
+                                <input type="hidden" name="rid" value="{{ r.id }}">
+                                <button class="btn btn-sm btn-danger">
+                                    <i class="fas fa-times"></i> Reject
+                                </button>
+                            </form>
+
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+            <div class="alert alert-warning text-center">
+                No rescue teams found.
+            </div>
+        {% endif %}
+
+    </div>
+</section>
+
+{% endblock %}

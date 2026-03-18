@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Register - Smart Marine Rescue & Weather Alert System{% endblock %}
+
+{% block content %}
+<section class="min-vh-100 d-flex align-items-center py-5"
+    style="background: linear-gradient(135deg, #0f172a 0%, #172554 100%); margin-top: 76px;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8">
+                <div class="card glass-card border-0 shadow-lg text-white"
+                    style="background: rgba(255, 255, 255, 0.1);">
+                    <div class="card-body p-5">
+                        <div class="text-center mb-4">
+                            <i class="fas fa-life-ring fa-3x text-primary mb-3"></i>
+                            <h2 class="fw-bold">Register as Fisherman</h2>
+                            <p class="text-white-50">Join MarineAlert for enhanced safety features</p>
+                        </div>
+
+                        <!-- Display messages -->
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        <form method="post" action="/register/">
+                            {% csrf_token %}
+
+                            <!-- Username -->
+                            <div class="form-group mb-3">
+                                <label class="form-label text-white-50">Username</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-transparent border-end-0 text-white-50">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                    <input type="text" name="username"
+                                        class="form-control bg-transparent text-white border-start-0 ps-0"
+                                        placeholder="Choose a username" required style="border-color: rgba(255,255,255,0.2);">
+                                </div>
+                            </div>
+
+                            <!-- Full Name -->
+                            <div class="form-group mb-3">
+                                <label class="form-label text-white-50">Full Name</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-transparent border-end-0 text-white-50">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                    <input type="text" name="name"
+                                        class="form-control bg-transparent text-white border-start-0 ps-0"
+                                        placeholder="John Doe" required style="border-color: rgba(255,255,255,0.2);">
+                                </div>
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="form-group mb-3">
+                                <label class="form-label text-white-50">Phone</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-transparent border-end-0 text-white-50">
+                                        <i class="fas fa-phone"></i>
+                                    </span>
+                                    <input type="text" name="phone"
+                                        class="form-control bg-transparent text-white border-start-0 ps-0"
+                                        placeholder="+91 1234567890" required style="border-color: rgba(255,255,255,0.2);">
+                                </div>
+                            </div>
+
+                            <!-- Boat Number -->
+                            <div class="form-group mb-3">
+                                <label class="form-label text-white-50">Boat Number</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-transparent border-end-0 text-white-50">
+                                        <i class="fas fa-ship"></i>
+                                    </span>
+                                    <input type="text" name="boat_number"
+                                        class="form-control bg-transparent text-white border-start-0 ps-0"
+                                        placeholder="Enter your boat number" required style="border-color: rgba(255,255,255,0.2);">
+                                </div>
+                            </div>
+
+                            <!-- Address -->
+                            <div class="form-group mb-3">
+                                <label class="form-label text-white-50">Address</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-transparent border-end-0 text-white-50">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </span>
+                                    <input type="text" name="address"
+                                        class="form-control bg-transparent text-white border-start-0 ps-0"
+                                        placeholder="Your address" required style="border-color: rgba(255,255,255,0.2);">
+                                </div>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="form-group mb-4">
+                                <label class="form-label text-white-50">Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-transparent border-end-0 text-white-50">
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                                    <input type="password" name="password"
+                                        class="form-control bg-transparent text-white border-start-0 ps-0"
+                                        placeholder="••••••••" required style="border-color: rgba(255,255,255,0.2);">
+                                </div>
+                            </div>
+
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg rounded-pill hover-glow">
+                                    Register
+                                </button>
+                            </div>
+                        </form>
+
+                        <div class="text-center mt-4 text-white-50">
+                            Already have an account? <a href="/login/"
+                                class="text-primary fw-bold text-decoration-none">Sign In</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

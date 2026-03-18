@@ -1,0 +1,80 @@
+{% extends 'ADMIN/base.html' %}
+{% block title %}Ports{% endblock %}
+
+{% block content %}
+
+<!-- Page Header -->
+<section class="bg-primary text-white py-5" style="margin-top:76px;">
+    <div class="container text-center">
+        <h1 class="fw-bold">Ports Management</h1>
+        <p class="lead">Add, update and manage ports</p>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+
+        <!-- Header + Add Button -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="mb-0">Ports List</h4>
+            <a href="/admin_add_port/" class="btn btn-success">
+                <i class="fas fa-plus"></i> Add Port
+            </a>
+        </div>
+
+        <!-- Messages -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% if ports %}
+        <div class="table-responsive shadow rounded">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Port Name</th>
+                        <th>Description</th>
+                        <th class="text-center" width="180">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for port in ports %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td class="fw-bold">{{ port.name }}</td>
+                        <td>{{ port.description }}</td>
+                        <td class="text-center">
+
+                            <a href="/admin_edit_port/?id={{ port.id }}"
+                               class="btn btn-sm btn-warning">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+
+                            <a href="/admin_delete_port/?id={{ port.id }}"
+                               class="btn btn-sm btn-danger"
+                               onclick="return confirm('Are you sure you want to delete this port?');">
+                                <i class="fas fa-trash"></i> Delete
+                            </a>
+
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+            <div class="alert alert-warning text-center">
+                No ports available.
+            </div>
+        {% endif %}
+
+    </div>
+</section>
+
+{% endblock %}

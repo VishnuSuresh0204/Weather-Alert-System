@@ -1,0 +1,84 @@
+{% extends 'ADMIN/base.html' %}
+{% load static %}
+
+{% block title %}Add Weather Alert - Admin{% endblock %}
+
+{% block content %}
+<section class="page-header bg-primary text-white py-5" style="margin-top: 76px;">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold">Add Weather Alert</h1>
+        <p class="lead">Assign alerts to ports</p>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+
+        <!-- Flash messages -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-success text-white">
+                        New Weather Alert
+                    </div>
+                    <div class="card-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Select Port</label>
+                                <select name="port" class="form-select" required>
+                                    <option value="">-- Select Port --</option>
+                                    {% for port in ports %}
+                                        <option value="{{ port.id }}">{{ port.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Title</label>
+                                <input type="text" name="title" class="form-control" placeholder="Enter alert title" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Description</label>
+                                <textarea name="description" class="form-control" placeholder="Enter alert description" required></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Alert Level</label>
+                                <select name="alert_level" class="form-select" required>
+                                    <option value="">-- Select Level --</option>
+                                    <option value="safe">Safe</option>
+                                    <option value="warning">Warning</option>
+                                    <option value="danger">Danger</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Status</label>
+                                <select name="status" class="form-select">
+                                    <option value="active" selected>Active</option>
+                                    <option value="inactive">Inactive</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-success w-100">Add Alert</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends 'ADMIN/base.html' %}
+{% load static %}
+
+{% block title %}Edit Weather Alert - Admin{% endblock %}
+
+{% block content %}
+<section class="page-header bg-primary text-white py-5" style="margin-top: 76px;">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold">Edit Weather Alert</h1>
+        <p class="lead">Modify alert details</p>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+
+        <!-- Flash messages -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-warning text-white">
+                        Edit Weather Alert
+                    </div>
+                    <div class="card-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Select Port</label>
+                                <select name="port" class="form-select" required>
+                                    {% for port in ports %}
+                                        <option value="{{ port.id }}" {% if alert.port.id == port.id %}selected{% endif %}>
+                                            {{ port.name }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Title</label>
+                                <input type="text" name="title" class="form-control" value="{{ alert.title }}" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Description</label>
+                                <textarea name="description" class="form-control" required>{{ alert.description }}</textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Alert Level</label>
+                                <select name="alert_level" class="form-select" required>
+                                    <option value="safe" {% if alert.alert_level == 'safe' %}selected{% endif %}>Safe</option>
+                                    <option value="warning" {% if alert.alert_level == 'warning' %}selected{% endif %}>Warning</option>
+                                    <option value="danger" {% if alert.alert_level == 'danger' %}selected{% endif %}>Danger</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Status</label>
+                                <select name="status" class="form-select">
+                                    <option value="active" {% if alert.status == 'active' %}selected{% endif %}>Active</option>
+                                    <option value="inactive" {% if alert.status == 'inactive' %}selected{% endif %}>Inactive</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-warning w-100">Update Alert</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

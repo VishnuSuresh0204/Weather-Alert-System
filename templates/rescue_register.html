@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Register Rescue Center - Smart Marine Rescue{% endblock %}
+
+{% block content %}
+
+<section class="min-vh-100 d-flex align-items-center py-5"
+style="background: linear-gradient(135deg, #0f172a 0%, #172554 100%); margin-top: 76px;">
+
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-lg-6 col-md-8">
+
+<div class="card border-0 shadow-lg text-white"
+style="background: rgba(255,255,255,0.12); backdrop-filter: blur(12px); border-radius: 24px;">
+
+<div class="card-body p-5">
+
+<!-- HEADER -->
+<div class="text-center mb-4">
+<i class="fas fa-ship fa-3x text-primary mb-3"></i>
+<h2 class="fw-bold">Rescue Team Registration</h2>
+<p class="text-white-50">
+Register your rescue unit to respond to SOS emergencies
+</p>
+</div>
+
+<!-- MESSAGES -->
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+{{ message }}
+<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+{% endfor %}
+{% endif %}
+
+<form method="post" action="/rescue_register/" enctype="multipart/form-data">
+{% csrf_token %}
+
+<!-- USERNAME -->
+<div class="mb-3">
+<label class="form-label text-white-50">Username</label>
+<div class="input-group">
+<span class="input-group-text bg-transparent text-white-50 border-end-0">
+<i class="fas fa-user"></i>
+</span>
+<input type="text" name="username"
+class="form-control bg-transparent text-white border-start-0"
+placeholder="Choose a unique username" required>
+</div>
+</div>
+
+<!-- CENTER NAME -->
+<div class="mb-3">
+<label class="form-label text-white-50">Rescue Center Name</label>
+<div class="input-group">
+<span class="input-group-text bg-transparent text-white-50 border-end-0">
+<i class="fas fa-building"></i>
+</span>
+<input type="text" name="name"
+class="form-control bg-transparent text-white border-start-0"
+placeholder="Rescue Center Name" required>
+</div>
+</div>
+
+<!-- PHONE -->
+<div class="mb-3">
+<label class="form-label text-white-50">Phone</label>
+<div class="input-group">
+<span class="input-group-text bg-transparent text-white-50 border-end-0">
+<i class="fas fa-phone"></i>
+</span>
+<input type="text" name="phone"
+class="form-control bg-transparent text-white border-start-0"
+placeholder="+91 9876543210" required>
+</div>
+</div>
+
+<!-- EMAIL -->
+<div class="mb-3">
+<label class="form-label text-white-50">Email</label>
+<div class="input-group">
+<span class="input-group-text bg-transparent text-white-50 border-end-0">
+<i class="fas fa-envelope"></i>
+</span>
+<input type="email" name="email"
+class="form-control bg-transparent text-white border-start-0"
+placeholder="email@example.com" required>
+</div>
+</div>
+
+<!-- PORT -->
+<div class="mb-3">
+<label class="form-label text-white-50">Assigned Port</label>
+<div class="input-group">
+<span class="input-group-text bg-transparent text-white-50 border-end-0">
+<i class="fas fa-anchor"></i>
+</span>
+<select name="port" class="form-select bg-transparent text-white border-start-0" required>
+<option value="" disabled selected>Select Port</option>
+{% for port in ports %}
+<option value="{{ port.id }}">{{ port.name }}</option>
+{% endfor %}
+</select>
+</div>
+</div>
+
+<!-- PROFILE PIC -->
+<div class="mb-3">
+<label class="form-label text-white-50">Profile Image (Optional)</label>
+<input type="file" name="profile_pic" class="form-control bg-transparent text-white">
+</div>
+
+<!-- PASSWORD -->
+<div class="mb-4">
+<label class="form-label text-white-50">Password</label>
+<div class="input-group">
+<span class="input-group-text bg-transparent text-white-50 border-end-0">
+<i class="fas fa-lock"></i>
+</span>
+<input type="password" name="password"
+class="form-control bg-transparent text-white border-start-0"
+placeholder="Create a secure password" required>
+</div>
+</div>
+
+<!-- SUBMIT -->
+<div class="d-grid">
+<button type="submit" class="btn btn-primary btn-lg rounded-pill">
+<i class="fas fa-check-circle me-2"></i>
+Register Rescue Team
+</button>
+</div>
+
+</form>
+
+<!-- FOOTER -->
+<div class="text-center mt-4 text-white-50">
+<p class="mb-1">
+<i class="fas fa-clock me-1"></i>
+Admin approval required before activation
+</p>
+Already registered?
+<a href="/login/" class="text-primary fw-bold text-decoration-none">Login</a>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</section>
+
+{% endblock %}
